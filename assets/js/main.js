@@ -1,12 +1,4 @@
 $(() => {
-  $('#movies').on('mouseenter', '.movie', function () {
-    $(this).find('.card-img-overlay').toggleClass('invisible');
-  });
-
-  $('#movies').on('mouseleave', '.movie', function () {
-    $(this).find('.card-img-overlay').toggleClass('invisible');
-  });
-
   function showMovies(movies) {
     const movieCards = [];
     $(movies).each((index, movie) => {
@@ -17,37 +9,40 @@ $(() => {
   }
 
   function getMovieHTML(movie) {
-    const movieCard = $('<div class="card my-3 movie">');
+    const movieCard = $('<div class="card my-3">');
 
-    const cardImage = $('<img class="card-img">');
+    const cardBody = $('<div class="card-body d-flex p-0">');
+
+    const cardImage = $('<img class="card-img w-25">');
     cardImage.attr('src', movie.imageUrl);
     cardImage.attr('alt', movie.title);
 
-    const imageOverlay = $('<div class="card-img-overlay invisible">');
-    imageOverlay.append('<h5>' + movie.title + '</h5>');
+    const cardContent = $('<div class="flex-fill">');
+    cardContent.append('<h4>' + movie.title + '</h4>');
+
     // TODO: Add more html when abstracted from file.
 
-    movieCard.append(cardImage, imageOverlay);
-
+    cardBody.append(cardImage, cardContent);
+    movieCard.html(cardBody);
     return movieCard;
   }
 
   const movies = [{
     title: '8 Mile',
     imageUrl: 'https://via.placeholder.com/200x200'
-  },{
+  }, {
     title: 'Fear and Loathing in Las Vegas',
     imageUrl: 'https://via.placeholder.com/200x200'
-  },{
+  }, {
     title: 'Pulp Fiction',
     imageUrl: 'https://via.placeholder.com/200x200'
-  },{
+  }, {
     title: 'I Love You Man',
     imageUrl: 'https://via.placeholder.com/200x200'
-  },{
+  }, {
     title: 'Terminator 2',
     imageUrl: 'https://via.placeholder.com/200x200'
-  },{
+  }, {
     title: 'Kill Bill',
     imageUrl: 'https://via.placeholder.com/200x200'
   }];
