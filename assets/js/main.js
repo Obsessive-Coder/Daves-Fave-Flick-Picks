@@ -17,7 +17,7 @@ $(() => {
   }
 
   function getMovieHTML(movie) {
-    const movieCard = $('<div class="card movie">');
+    const movieCard = $('<div class="card my-3 movie">');
 
     const cardImage = $('<img class="card-img">');
     cardImage.attr('src', movie.imageUrl);
