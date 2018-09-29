@@ -2,7 +2,7 @@ $(() => {
   function getMovieData(movies, callback) {
     const newMovies = [];
     $(movies).each((index, movie) => {
-      $.ajax('http://www.omdbapi.com/?apikey=e85aad&&t=' + movie.title + '&y=' + movie.year)
+      $.ajax('https://www.omdbapi.com/?apikey=e85aad&&t=' + movie.title + '&y=' + movie.year)
         .done((movieData) => {
           newMovies.push(movieData);
 
