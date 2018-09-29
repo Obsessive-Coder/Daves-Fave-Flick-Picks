@@ -1,6 +1,6 @@
 .card {
   height: 50vh;
-  `
+  max-height: 300px !important;
 }
 
 @media screen and (orientation:landscape) {
