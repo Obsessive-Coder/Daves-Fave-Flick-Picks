@@ -1,3 +1,10 @@
 .card {
-  height: 50vh;`
+  height: 50vh;
+  `
+}
+
+@media screen and (orientation:landscape) {
+  .card {
+    height: 90vh;
+  }
 }
