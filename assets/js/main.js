@@ -1,4 +1,18 @@
 $(() => {
+  function getMovieData(movies, callback) {
+    const newMovies = [];
+    $(movies).each((index, movie) => {
+      $.ajax('http://www.omdbapi.com/?apikey=e85aad&&t=' + movie.title + '&y=' + movie.year)
+        .done((movieData) => {
+          newMovies.push(movieData);
+
+          if (movies.length === newMovies.length) {
+            callback(newMovies);
+          }
+        });
+    });
+  }
+
   function showMovies(movies) {
     const movieCards = [];
     $(movies).each((index, movie) => {
@@ -8,19 +22,17 @@ $(() => {
     $('#movies').html(movieCards);
   }
 
-  function getMovieHTML(movie) {;
-
-
+  function getMovieHTML(movie) {
+    console.log(movie);
     const movieCard = $('<div class="card my-3">');
 
     const cardBody = $('<div class="card-body row p-0">');
 
     const cardImage = $('<img class="col-5 col-md-4 img-fluid p-0">');
-    cardImage.attr('src', movie.imageUrl);
-    cardImage.attr('alt', movie.title);
+    cardImage.attr('src', movie.Poster);
+    cardImage.attr('alt', movie.Title);
 
-    const cardContent = $('<div class="col-7 col-md-8">');
-    cardContent.append('<h5>' + movie.title + '</h5>');
+    const cardContent = getMovieCardContent(movie);
 
     // TODO: Add more html when abstracted from file.
 
@@ -29,25 +41,55 @@ $(() => {
     return movieCard;
   }
 
-  const movies = [{
-    title: '8 Mile',
-    imageUrl: 'https://via.placeholder.com/150x150'
-  }, {
-    title: 'Fear and Loathing in Las Vegas',
-    imageUrl: 'https://via.placeholder.com/150x150'
-  }, {
-    title: 'Pulp Fiction',
-    imageUrl: 'https://via.placeholder.com/150x150'
-  }, {
-    title: 'I Love You Man',
-    imageUrl: 'https://via.placeholder.com/150x150'
-  }, {
-    title: 'Terminator 2',
-    imageUrl: 'https://via.placeholder.com/150x150'
-  }, {
-    title: 'Kill Bill',
-    imageUrl: 'https://via.placeholder.com/150x150'
-  }];
+  function getMovieCardContent(movie) {
+    const cardContent = $('<div class="col-7 col-md-8">');
+    cardContent.append('<h5>' + movie.Title + '</h5>');
 
-  showMovies(movies);
+    const info = movie.info;
+
+    const infoHTML = getMovieInfoSection(info);
+    // cardContent.append(infoHTML);
+
+    return cardContent;
+  }
+
+  function getMovieInfoSection(info) {
+    const infoHTML = $('<div class="d-flex flex-wrap">');
+    for (const key in info) {
+      if (info.hasOwnProperty(key)) {
+        const infoItem = getMovieInfoItem(key, info[key]);
+        infoHTML.append(infoItem);
+      }
+    }
+
+    return infoHTML;
+  }
+
+  function getMovieInfoItem(category, value) {
+    const infoItem = $('<div class="w-50">');
+    infoItem.append('<strong class="m-0">' + category + '</strong>');
+    infoItem.append('<small class="d-block">' + value + '</small>');
+
+    return infoItem;
+  }
+
+  const movieNames = [{
+      title: '1408',
+      year: '2007'
+    },
+    {
+      title: '12 Angry Men',
+      year: 1957
+    },
+    {
+      title: '12 Years a Slave',
+      year: 2013
+    },
+    {
+      title: '13 Ghosts',
+      year: 1960
+    }
+  ];
+
+  getMovieData(movieNames, showMovies);
 });
