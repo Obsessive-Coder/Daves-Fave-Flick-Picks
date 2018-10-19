@@ -52,18 +52,23 @@ $(() => {
       writer: movie.Writer
     };
 
-    const infoHTML = getMovieInfoSection(info);
+    const infoHTML = getMovieInfoSection(movie.Title, info);
     cardContent.append(infoHTML);
 
     return cardContent;
   }
 
-  function getMovieInfoSection(info) {
-    const infoHTML = $('<div class="d-flex flex-wrap">');
+  function getMovieInfoSection(title, info) {
+    const infoHTML = $('<div class="d-flex flex-wrap align-items-center h-100">');
     for (const key in info) {
       if (info.hasOwnProperty(key)) {
         const infoItem = getMovieInfoItem(key, info[key]);
         infoHTML.append(infoItem);
+      }
+
+      if(key === 'writer' && daveFavorites.includes(title.toLowerCase())) {
+        console.log(daveFavorites.includes(title.toLowerCase()));
+        infoHTML.append(getFavoriteItem());
       }
     }
 
@@ -76,6 +81,13 @@ $(() => {
     infoItem.append('<small class="d-block">' + value + '</small>');
 
     return infoItem;
+  }
+
+  function getFavoriteItem() {
+    const favoriteItem = $('<div class="flex-fill"></div>');
+    favoriteItem.append('<strong>Dave\'s Fave!</strong>');
+
+    return favoriteItem;
   }
 
   const movieNames = [{
@@ -95,6 +107,8 @@ $(() => {
       year: 1960
     }
   ];
+
+  const  daveFavorites = ['1408', '13 ghosts'];
 
   getMovieData(movieNames);
 });
