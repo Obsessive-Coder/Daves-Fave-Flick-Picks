@@ -1,5 +1,5 @@
 $(() => {
-  function getMovieData(movies, callback) {
+  function getMovieData(movies) {
     const newMovies = [];
     $(movies).each((index, movie) => {
       $.ajax('https://www.omdbapi.com/?apikey=e85aad&&t=' + movie.title + '&y=' + movie.year)
@@ -7,7 +7,7 @@ $(() => {
           newMovies.push(movieData);
 
           if (movies.length === newMovies.length) {
-            callback(newMovies);
+            showMovies(newMovies);
           }
         });
     });
@@ -45,10 +45,15 @@ $(() => {
     const cardContent = $('<div class="col-7 col-md-8">');
     cardContent.append('<h5>' + movie.Title + '</h5>');
 
-    const info = movie.info;
+    const info = {
+      genre: movie.Genre,
+      year: movie.Year,
+      director: movie.Director,
+      writer: movie.Writer
+    };
 
     const infoHTML = getMovieInfoSection(info);
-    // cardContent.append(infoHTML);
+    cardContent.append(infoHTML);
 
     return cardContent;
   }
@@ -91,5 +96,5 @@ $(() => {
     }
   ];
 
-  getMovieData(movieNames, showMovies);
+  getMovieData(movieNames);
 });
