@@ -1,12 +1,18 @@
 $(() => {
   function getMovieData(movies) {
     const newMovies = [];
+
     $(movies).each((index, movie) => {
+      if(movie.isFavorite) {
+        favoriteMovies.push(movie.title);
+      }
+
       $.ajax('https://www.omdbapi.com/?apikey=e85aad&&t=' + movie.title + '&y=' + movie.year)
         .done((movieData) => {
           newMovies.push(movieData);
 
           if (movies.length === newMovies.length) {
+            // newMovies.length;
             showMovies(newMovies);
           }
         });
@@ -19,12 +25,14 @@ $(() => {
       const movieCard = getMovieHTML(movie);
       movieCards.push(movieCard);
     });
+    console.log(formattedMovies);
     $('#movies').html(movieCards);
+    sortMovies();
+    console.log(formattedMovies);
   }
 
   function getMovieHTML(movie) {
-    console.log(movie);
-    const movieCard = $('<div class="card my-3">');
+    const movieCard = $('<div class="card my-5">');
 
     const cardBody = $('<div class="card-body row p-0">');
 
@@ -42,33 +50,37 @@ $(() => {
   }
 
   function getMovieCardContent(movie) {
-    const cardContent = $('<div class="col-7 col-md-8">');
-    cardContent.append('<h5>' + movie.Title + '</h5>');
+    const cardContent = $('<div class="col-7 col-md-8 p-5">');
+    cardContent.append('<h2>' + movie.Title + '</h2>');
 
-    const info = {
-      genre: movie.Genre,
-      year: movie.Year,
-      director: movie.Director,
-      writer: movie.Writer
+    const movieInfo = {
+      Title: movie.Title,
+      Genre: movie.Genre,
+      Year: movie.Year,
+      Director: movie.Director,
+      Writer: movie.Writer
     };
 
-    const infoHTML = getMovieInfoSection(movie.Title, info);
+    formattedMovies.push(movieInfo);
+
+    const infoHTML = getMovieInfoSection(movieInfo);
     cardContent.append(infoHTML);
 
     return cardContent;
   }
 
-  function getMovieInfoSection(title, info) {
+  function getMovieInfoSection(movieInfo) {
     const infoHTML = $('<div class="d-flex flex-wrap align-items-center h-100">');
-    for (const key in info) {
-      if (info.hasOwnProperty(key)) {
-        const infoItem = getMovieInfoItem(key, info[key]);
+    for (const key in movieInfo) {
+      if (movieInfo.hasOwnProperty(key)) {
+        const infoItem = getMovieInfoItem(key, movieInfo[key]);
         infoHTML.append(infoItem);
       }
 
-      if(key === 'writer' && daveFavorites.includes(title.toLowerCase())) {
-        console.log(daveFavorites.includes(title.toLowerCase()));
-        infoHTML.append(getFavoriteItem());
+      if (key === 'writer') {
+        if(favoriteMovies.includes(movieInfo.Title)) {
+          infoHTML.append(getFavoriteItem());
+        }
       }
     }
 
@@ -76,7 +88,7 @@ $(() => {
   }
 
   function getMovieInfoItem(category, value) {
-    const infoItem = $('<div class="w-50">');
+    const infoItem = $('<div class="w-50 flex-fill">');
     infoItem.append('<strong class="m-0">' + category + '</strong>');
     infoItem.append('<small class="d-block">' + value + '</small>');
 
@@ -90,25 +102,22 @@ $(() => {
     return favoriteItem;
   }
 
-  const movieNames = [{
-      title: '1408',
-      year: '2007'
-    },
-    {
-      title: '12 Angry Men',
-      year: 1957
-    },
-    {
-      title: '12 Years a Slave',
-      year: 2013
-    },
-    {
-      title: '13 Ghosts',
-      year: 1960
-    }
-  ];
+  function sortMovies() {
+    formattedMovies.sort(function(movie1, movie2){
+      if(movie1.Title < movie2.Title) {
+        return -1;
+      }
 
-  const  daveFavorites = ['1408', '13 ghosts'];
+      if(movie1.Title > movie2.Title) {
+        return 1;
+      }
 
-  getMovieData(movieNames);
+      return 0;
+    });
+  }
+
+  const favoriteMovies = [];
+  const formattedMovies = [];
+
+  getMovieData(movies);
 });
