@@ -43,7 +43,13 @@
       <!-- Movie cards -->
     </section>
 
-    <button id="next-page" class="btn btn-lg btn-block btn-primary rounded-0" data-page="0">Next Page</button>
+    <p>Current Page:
+      <span id="page-number"></span>
+    </p>
+
+    <button class="btn btn-lg btn-primary rounded-0 page-button" data-value="-1">Previous Page</button>
+
+    <button class="btn btn-lg btn-primary rounded-0 page-button" data-value="1">Next Page</button>
   </main>
 
   <footer>

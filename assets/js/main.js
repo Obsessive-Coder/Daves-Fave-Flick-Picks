@@ -1,34 +1,85 @@
 $(() => {
-  $('#next-page').on('click', function() {
-    // isSecondPage = true;
-    getMovieData();
+  $('.page-button').on('click', function () {
+    const pageChangeAmount = parseInt($(this).attr('data-value'));
+
+    const newPageNumber = currentPage + pageChangeAmount;
+
+    if(newPageNumber > movies.length/25 + 1) {
+      return;
+    }
+    if(newPageNumber < 1) {
+      return;
+    }
+
+    currentPage = newPageNumber;
+
+    $('#page-number').text(currentPage);
+
+    const nextPageMovies = getPageMovies();
+console.log(nextPageMovies);
+    getMovieData(nextPageMovies);
   });
 
-  function getMovieData() {
-    const newMovies = [];
-    currentIndex = 0;
+  function getPageMovies() {
+    const pageMovies = [];
 
-    $(movies).each((index, movie) => {
-      // Add the movie title to array of favorite movies.
-      if (movie.isFavorite) {
-        favoriteMovies.push(movie.title);
+    let startingIndex = 0;
+
+    switch(currentPage) {
+      case 2:
+        startingIndex = 25;
+        break;
+      case 3:
+        startingIndex = 50;
+        break;
+      case 4:
+        startingIndex = 75;
+        break;
+      case 5:
+        startingIndex = 100;
+        break;
+      case 6:
+        startingIndex = 125;
+        break;
+      default:
+        startingIndex = 0;
+        break;
+    }
+
+    for (let i = startingIndex; (i < (startingIndex + 25)) && i < movies.length; i++) {
+      pageMovies.push(movies[i]);
+    }
+
+    return pageMovies;
+  }
+
+  function getMovieData(pageMovies) {
+    const formattedMovies = [];
+
+    $(pageMovies).each((index, pageMovie) => {
+      // Add movie title to favorites array.
+      if (pageMovie.isFavorite) {
+        favoriteMovies.push(pageMovie.title);
       }
 
-      currentIndex += 1;
-
-      if (currentIndex === 26) {
-        return false;
-      }
-
-      $.ajax('https://www.omdbapi.com/?apikey=e85aad&&t=' + movie.title + '&y=' + movie.year)
+      $.ajax('https://www.omdbapi.com/?apikey=e85aad&&t=' + pageMovie.title + '&y=' + pageMovie.year)
         .done((movieData) => {
-          newMovies.push(movieData);
+          const formattedMovie = {
+            Title: movieData.Title,
+            Poster: movieData.Poster,
+            Plot: movieData.Plot,
+            Genre: movieData.Genre,
+            Year: movieData.Year,
+            Director: movieData.Director,
+            Writer: movieData.Writer,
+            IMDB: movieData.imdbRating,
+            Metascore: movieData.Metascore
+          };
 
-          // Show the movies if this is the last movie in the loop.
-          if (newMovies.length === 25 || movies.length === 0) {
-            console.log(currentIndex);
-            console.log(movies);
-            showMovies(newMovies);
+          formattedMovies.push(formattedMovie);
+
+          if (formattedMovies.length === pageMovies.length) {
+            showMovies(formattedMovies);
           }
         });
     });
@@ -66,8 +117,6 @@ $(() => {
     cardContent.append('<p class="m-0 mt-1 px-5">' + movie.Plot + '</p>');
 
     const movieInfo = {
-      Title: movie.Title,
-      Plot: movie.Plot,
       Genre: movie.Genre,
       Year: movie.Year,
       Director: movie.Director,
@@ -75,8 +124,6 @@ $(() => {
       IMDB: movie.imdbRating,
       Metascore: movie.Metascore
     };
-
-    formattedMovies.push(movieInfo);
 
     const infoHTML = getMovieInfoSection(movieInfo);
     cardContent.append(infoHTML);
@@ -87,7 +134,7 @@ $(() => {
   function getMovieInfoSection(movieInfo) {
     const infoHTML = $('<div class="d-flex flex-wrap align-items-center h-75 movie-info">');
     for (const key in movieInfo) {
-      if ((key !== "Title") && (key !== "Plot") && movieInfo.hasOwnProperty(key)) {
+      if (movieInfo.hasOwnProperty(key)) {
         const infoItem = getMovieInfoItem(key, movieInfo[key]);
         infoHTML.append(infoItem);
       }
@@ -118,25 +165,12 @@ $(() => {
     return favoriteItem;
   }
 
-  function sortMovies() {
-    formattedMovies.sort(function (movie1, movie2) {
-      if (movie1.Title < movie2.Title) {
-        return -1;
-      }
-
-      if (movie1.Title > movie2.Title) {
-        return 1;
-      }
-
-      return 0;
-    });
-  }
-
   const favoriteMovies = [];
-  const formattedMovies = [];
+  let currentPage = 1;
 
-  let currentIndex = 0;
-  let isSecondPage = false;
+  const pageMovies = getPageMovies();
 
-  getMovieData();
+  $('#page-number').text(currentPage);
+
+  getMovieData(pageMovies);
 });
