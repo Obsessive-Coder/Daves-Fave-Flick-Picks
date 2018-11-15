@@ -1,14 +1,23 @@
 body {
-  font-size: x-large;
+  font-size: large;
 }
 
 .card {
-  height: 50vh;
-  max-height: 500px !important;
+  /* height: 75vh; */
 }
 
-@media screen and (orientation:landscape) {
-  .card {
-    height: 80vh;
-  }
+.movie-info-item {
+  /* z-index: 1000; */
+}
+
+.dave-fave {
+  /* position: absolute;
+  top: 2%;
+  right: 0; */
+  /* z-index: 100 !important; */
+}
+
+.dave-fave strong {
+  /* font-size: 48pt; */
+  font-size: xx-large;
 }

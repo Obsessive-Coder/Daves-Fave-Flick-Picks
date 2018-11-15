@@ -1,18 +1,33 @@
 $(() => {
-  function getMovieData(movies) {
+  $('#next-page').on('click', function() {
+    // isSecondPage = true;
+    getMovieData();
+  });
+
+  function getMovieData() {
     const newMovies = [];
+    currentIndex = 0;
 
     $(movies).each((index, movie) => {
-      if(movie.isFavorite) {
+      // Add the movie title to array of favorite movies.
+      if (movie.isFavorite) {
         favoriteMovies.push(movie.title);
+      }
+
+      currentIndex += 1;
+
+      if (currentIndex === 26) {
+        return false;
       }
 
       $.ajax('https://www.omdbapi.com/?apikey=e85aad&&t=' + movie.title + '&y=' + movie.year)
         .done((movieData) => {
           newMovies.push(movieData);
 
-          if (movies.length === newMovies.length) {
-            // newMovies.length;
+          // Show the movies if this is the last movie in the loop.
+          if (newMovies.length === 25 || movies.length === 0) {
+            console.log(currentIndex);
+            console.log(movies);
             showMovies(newMovies);
           }
         });
@@ -25,24 +40,20 @@ $(() => {
       const movieCard = getMovieHTML(movie);
       movieCards.push(movieCard);
     });
-    console.log(formattedMovies);
+
     $('#movies').html(movieCards);
-    sortMovies();
-    console.log(formattedMovies);
   }
 
   function getMovieHTML(movie) {
-    const movieCard = $('<div class="card my-5">');
+    const movieCard = $('<div class="card my-5 rounded-0">');
 
-    const cardBody = $('<div class="card-body row p-0">');
+    const cardBody = $('<div class="card-body d-md-flex p-0">');
 
-    const cardImage = $('<img class="col-5 col-md-4 img-fluid p-0">');
+    const cardImage = $('<img class="img-fluid p-0">');
     cardImage.attr('src', movie.Poster);
     cardImage.attr('alt', movie.Title);
 
     const cardContent = getMovieCardContent(movie);
-
-    // TODO: Add more html when abstracted from file.
 
     cardBody.append(cardImage, cardContent);
     movieCard.html(cardBody);
@@ -50,15 +61,19 @@ $(() => {
   }
 
   function getMovieCardContent(movie) {
-    const cardContent = $('<div class="col-7 col-md-8 p-5">');
+    const cardContent = $('<div class="flex-fill p-3 pb-5">');
     cardContent.append('<h2>' + movie.Title + '</h2>');
+    cardContent.append('<p class="m-0 mt-1 px-5">' + movie.Plot + '</p>');
 
     const movieInfo = {
       Title: movie.Title,
+      Plot: movie.Plot,
       Genre: movie.Genre,
       Year: movie.Year,
       Director: movie.Director,
-      Writer: movie.Writer
+      Writer: movie.Writer,
+      IMDB: movie.imdbRating,
+      Metascore: movie.Metascore
     };
 
     formattedMovies.push(movieInfo);
@@ -70,15 +85,15 @@ $(() => {
   }
 
   function getMovieInfoSection(movieInfo) {
-    const infoHTML = $('<div class="d-flex flex-wrap align-items-center h-100">');
+    const infoHTML = $('<div class="d-flex flex-wrap align-items-center h-75 movie-info">');
     for (const key in movieInfo) {
-      if (movieInfo.hasOwnProperty(key)) {
+      if ((key !== "Title") && (key !== "Plot") && movieInfo.hasOwnProperty(key)) {
         const infoItem = getMovieInfoItem(key, movieInfo[key]);
         infoHTML.append(infoItem);
       }
 
-      if (key === 'writer') {
-        if(favoriteMovies.includes(movieInfo.Title)) {
+      if (key === 'Metascore') {
+        if (favoriteMovies.includes(movieInfo.Title)) {
           infoHTML.append(getFavoriteItem());
         }
       }
@@ -88,7 +103,8 @@ $(() => {
   }
 
   function getMovieInfoItem(category, value) {
-    const infoItem = $('<div class="w-50 flex-fill">');
+    const width = category !== "Plot" ? "w-50" : "w-100";
+    const infoItem = $('<div class="flex-fill movie-info-item ' + width + '">');
     infoItem.append('<strong class="m-0">' + category + '</strong>');
     infoItem.append('<small class="d-block">' + value + '</small>');
 
@@ -96,19 +112,19 @@ $(() => {
   }
 
   function getFavoriteItem() {
-    const favoriteItem = $('<div class="flex-fill"></div>');
-    favoriteItem.append('<strong>Dave\'s Fave!</strong>');
+    const favoriteItem = $('<div class="flex-fill dave-fave"></div>');
+    favoriteItem.append('<strong class="text-warning">Dave\'s Fave!</strong>');
 
     return favoriteItem;
   }
 
   function sortMovies() {
-    formattedMovies.sort(function(movie1, movie2){
-      if(movie1.Title < movie2.Title) {
+    formattedMovies.sort(function (movie1, movie2) {
+      if (movie1.Title < movie2.Title) {
         return -1;
       }
 
-      if(movie1.Title > movie2.Title) {
+      if (movie1.Title > movie2.Title) {
         return 1;
       }
 
@@ -119,5 +135,8 @@ $(() => {
   const favoriteMovies = [];
   const formattedMovies = [];
 
-  getMovieData(movies);
+  let currentIndex = 0;
+  let isSecondPage = false;
+
+  getMovieData();
 });
