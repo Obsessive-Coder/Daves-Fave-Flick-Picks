@@ -96,7 +96,7 @@ console.log(nextPageMovies);
   }
 
   function getMovieHTML(movie) {
-    const movieCard = $('<div class="card my-5 rounded-0">');
+    const movieCard = $('<div class="card my-5">');
 
     const cardBody = $('<div class="card-body d-md-flex p-0">');
 
@@ -113,8 +113,8 @@ console.log(nextPageMovies);
 
   function getMovieCardContent(movie) {
     const cardContent = $('<div class="flex-fill p-1 p-md-3 pb-5">');
-    cardContent.append('<h2 class="mt-2">' + movie.Title + '</h2>');
-    cardContent.append('<p class="mx-0 my-3 px-md-5">' + movie.Plot + '</p>');
+    cardContent.append('<h2 class="movie-title">' + movie.Title + '</h2>');
+    cardContent.append('<p class="m-2 px-md-5">' + movie.Plot + '</p>');
 
     const movieInfo = {
       Genre: movie.Genre,
@@ -161,7 +161,7 @@ console.log(nextPageMovies);
 
   function getFavoriteItem() {
     const favoriteItem = $('<div class="flex-fill dave-fave"></div>');
-    favoriteItem.append('<strong>Dave\'s Fave!</strong>');
+    favoriteItem.append('<strong class="mx-1">Dave\'s Fave!</strong>');
 
     return favoriteItem;
   }
