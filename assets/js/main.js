@@ -4,10 +4,10 @@ $(() => {
 
     const newPageNumber = currentPage + pageChangeAmount;
 
-    if(newPageNumber > movies.length/25 + 1) {
+    if (newPageNumber > movies.length / 25 + 1) {
       return;
     }
-    if(newPageNumber < 1) {
+    if (newPageNumber < 1) {
       return;
     }
 
@@ -16,7 +16,7 @@ $(() => {
     $('#page-number').text(currentPage);
 
     const nextPageMovies = getPageMovies();
-console.log(nextPageMovies);
+    console.log(nextPageMovies);
     getMovieData(nextPageMovies);
   });
 
@@ -25,7 +25,7 @@ console.log(nextPageMovies);
 
     let startingIndex = 0;
 
-    switch(currentPage) {
+    switch (currentPage) {
       case 2:
         startingIndex = 25;
         break;
@@ -46,7 +46,8 @@ console.log(nextPageMovies);
         break;
     }
 
-    for (let i = startingIndex; (i < (startingIndex + 25)) && i < movies.length; i++) {
+    for (let i = startingIndex;
+      (i < (startingIndex + 25)) && i < movies.length; i++) {
       pageMovies.push(movies[i]);
     }
 
@@ -55,6 +56,7 @@ console.log(nextPageMovies);
 
   function getMovieData(pageMovies) {
     const formattedMovies = [];
+    let requestCount = 0;
 
     $(pageMovies).each((index, pageMovie) => {
       // Add movie title to favorites array.
@@ -64,23 +66,30 @@ console.log(nextPageMovies);
 
       $.ajax('https://www.omdbapi.com/?apikey=e85aad&&t=' + pageMovie.title + '&y=' + pageMovie.year)
         .done((movieData) => {
-          const formattedMovie = {
-            Title: movieData.Title,
-            Poster: movieData.Poster,
-            Plot: movieData.Plot,
-            Genre: movieData.Genre,
-            Year: movieData.Year,
-            Director: movieData.Director,
-            Writer: movieData.Writer,
-            IMDB: movieData.imdbRating,
-            Metascore: movieData.Metascore
-          };
-
-          formattedMovies.push(formattedMovie);
-
-          if (formattedMovies.length === pageMovies.length) {
-            showMovies(formattedMovies);
+          requestCount += 1;
+          if(movieData.hasOwnProperty("Error")) {
+            return console.log(movieData.Error);
           }
+          // if(!movieData.hasOwnProperty('Error')){
+            const formattedMovie = {
+              Title: movieData.Title,
+              Poster: movieData.Poster,
+              Plot: movieData.Plot,
+              Genre: movieData.Genre,
+              Year: movieData.Year,
+              Director: movieData.Director,
+              Writer: movieData.Writer,
+              IMDB: movieData.imdbRating,
+              Metascore: movieData.Metascore
+            };
+
+            formattedMovies.push(formattedMovie);
+
+            // if (formattedMovies.length === pageMovies.length) {
+              if(requestCount === pageMovies.length) {
+              showMovies(formattedMovies);
+            }
+          // }
         });
     });
   }

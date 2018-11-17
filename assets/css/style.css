@@ -31,8 +31,18 @@ body {
   color: #FF8C00;
 }
 
-@media only screen and (max-width: 640px){
-  body {
-    font-size: small;
+@media only screen and (min-width: 920px){
+  .movie-info-item {
+    font-size: x-large;
+  }
+
+  p {
+    font-size: larger;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .movie-info-item {
+    font-size: large;
   }
 }
