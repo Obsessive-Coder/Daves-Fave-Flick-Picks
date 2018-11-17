@@ -1,23 +1,34 @@
 body {
+  background-color: #32322C;
   font-size: large;
+  font-family: Calibri, sans-serif;
+  color: #1A2628;
+}
+
+.oleo-font {
+  font-family: 'Oleo Script', cursive;
 }
 
 .card {
-  /* height: 75vh; */
+  background-color: #6C7567;
 }
 
-.movie-info-item {
-  /* z-index: 1000; */
-}
-
-.dave-fave {
-  /* position: absolute;
-  top: 2%;
-  right: 0; */
-  /* z-index: 100 !important; */
+.title {
+  color: #6C7567;
+  font-size: 60pt;
+  margin-bottom: 100px;
+  margin-top: 50px;
+  letter-spacing: 10px;
 }
 
 .dave-fave strong {
   /* font-size: 48pt; */
-  font-size: xx-large;
+  font-size: 36pt;
+  color: #FF8C00;
+}
+
+@media only screen and (max-width: 640px){
+  body {
+    font-size: small;
+  }
 }

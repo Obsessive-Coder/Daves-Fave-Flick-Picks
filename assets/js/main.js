@@ -112,27 +112,27 @@ console.log(nextPageMovies);
   }
 
   function getMovieCardContent(movie) {
-    const cardContent = $('<div class="flex-fill p-3 pb-5">');
-    cardContent.append('<h2>' + movie.Title + '</h2>');
-    cardContent.append('<p class="m-0 mt-1 px-5">' + movie.Plot + '</p>');
+    const cardContent = $('<div class="flex-fill p-1 p-md-3 pb-5">');
+    cardContent.append('<h2 class="mt-2">' + movie.Title + '</h2>');
+    cardContent.append('<p class="mx-0 my-3 px-md-5">' + movie.Plot + '</p>');
 
     const movieInfo = {
       Genre: movie.Genre,
       Year: movie.Year,
       Director: movie.Director,
       Writer: movie.Writer,
-      IMDB: movie.imdbRating,
+      IMDB: movie.IMDB,
       Metascore: movie.Metascore
     };
 
-    const infoHTML = getMovieInfoSection(movieInfo);
+    const infoHTML = getMovieInfoSection(movie.Title, movieInfo);
     cardContent.append(infoHTML);
 
     return cardContent;
   }
 
-  function getMovieInfoSection(movieInfo) {
-    const infoHTML = $('<div class="d-flex flex-wrap align-items-center h-75 movie-info">');
+  function getMovieInfoSection(title, movieInfo) {
+    const infoHTML = $('<div class="d-flex flex-wrap align-items-center movie-info">');
     for (const key in movieInfo) {
       if (movieInfo.hasOwnProperty(key)) {
         const infoItem = getMovieInfoItem(key, movieInfo[key]);
@@ -140,7 +140,7 @@ console.log(nextPageMovies);
       }
 
       if (key === 'Metascore') {
-        if (favoriteMovies.includes(movieInfo.Title)) {
+        if (favoriteMovies.includes(title)) {
           infoHTML.append(getFavoriteItem());
         }
       }
@@ -151,8 +151,9 @@ console.log(nextPageMovies);
 
   function getMovieInfoItem(category, value) {
     const width = category !== "Plot" ? "w-50" : "w-100";
-    const infoItem = $('<div class="flex-fill movie-info-item ' + width + '">');
+    const infoItem = $('<div class="flex-fill my-3 movie-info-item ' + width + '">');
     infoItem.append('<strong class="m-0">' + category + '</strong>');
+
     infoItem.append('<small class="d-block">' + value + '</small>');
 
     return infoItem;
@@ -160,7 +161,7 @@ console.log(nextPageMovies);
 
   function getFavoriteItem() {
     const favoriteItem = $('<div class="flex-fill dave-fave"></div>');
-    favoriteItem.append('<strong class="text-warning">Dave\'s Fave!</strong>');
+    favoriteItem.append('<strong>Dave\'s Fave!</strong>');
 
     return favoriteItem;
   }
