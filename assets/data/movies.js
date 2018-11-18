@@ -1,11 +1,11 @@
-const movies = [
+let movies = [
  {
    "Title": "1408",
    "Genre": "Horror",
    "Sub-Genre": "Campy",
    "Year": 2007,
-   "Directed By": "Mikael Håfström",
-   "Written By": "Matt Greenberg, Scott Alexander, Larry Karaszewski",
+   "Director": "Mikael Håfström",
+   "Writer": "Matt Greenberg, Scott Alexander, Larry Karaszewski",
    "IsFavorite": "False"
  },
  {
@@ -13,8 +13,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Courtroom",
    "Year": 1957,
-   "Directed By": "Sidney Lumet",
-   "Written By": "Reginald Rose",
+   "Director": "Sidney Lumet",
+   "Writer": "Reginald Rose",
    "IsFavorite": "False"
  },
  {
@@ -22,8 +22,8 @@ const movies = [
    "Genre": "Drama",
    "Sub-Genre": "Historical",
    "Year": 2013,
-   "Directed By": "Steve McQueen",
-   "Written By": "John Ridley",
+   "Director": "Steve McQueen",
+   "Writer": "John Ridley",
    "IsFavorite": "False"
  },
  {
@@ -31,8 +31,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Classic",
    "Year": 1960,
-   "Directed By": "William Castle",
-   "Written By": "Robb White",
+   "Director": "William Castle",
+   "Writer": "Robb White",
    "IsFavorite": "False"
  },
  {
@@ -40,8 +40,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Space",
    "Year": 1968,
-   "Directed By": "Stanley Kubrick",
-   "Written By": "Stanley Kubrick, Aurthur C. Clarke",
+   "Director": "Stanley Kubrick",
+   "Writer": "Stanley Kubrick, Aurthur C. Clarke",
    "IsFavorite": "False"
  },
  {
@@ -49,8 +49,8 @@ const movies = [
    "Genre": "Surrealism",
    "Sub-Genre": "Charlie Kaufman",
    "Year": 2002,
-   "Directed By": "Spike Jonze",
-   "Written By": "Charlie Kaufman",
+   "Director": "Spike Jonze",
+   "Writer": "Charlie Kaufman",
    "IsFavorite": "False"
  },
  {
@@ -58,8 +58,8 @@ const movies = [
    "Genre": "Surrealism",
    "Sub-Genre": "Fantasy",
    "Year": 1988,
-   "Directed By": "Jan Švankmajer",
-   "Written By": "Jan Švankmajer",
+   "Director": "Jan Švankmajer",
+   "Writer": "Jan Švankmajer",
    "IsFavorite": "False"
  },
  {
@@ -67,8 +67,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Space",
    "Year": 1979,
-   "Directed By": "Ridley Scott",
-   "Written By": "Dan O'Bannon",
+   "Director": "Ridley Scott",
+   "Writer": "Dan O'Bannon",
    "IsFavorite": "False"
  },
  {
@@ -76,8 +76,8 @@ const movies = [
    "Genre": "War",
    "Sub-Genre": "WWI",
    "Year": 1930,
-   "Directed By": "Lewis Milestone",
-   "Written By": "Maxwell Anderson, George Abbott, Del Andrews, C. Gardner Sullivan",
+   "Director": "Lewis Milestone",
+   "Writer": "Maxwell Anderson, George Abbott, Del Andrews, C. Gardner Sullivan",
    "IsFavorite": "True"
  },
  {
@@ -85,8 +85,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Comedy",
    "Year": 1999,
-   "Directed By": "Chris Smith",
-   "Written By": "",
+   "Director": "Chris Smith",
+   "Writer": "N/A",
    "IsFavorite": "True"
  },
  {
@@ -94,8 +94,8 @@ const movies = [
    "Genre": "Drama",
    "Sub-Genre": "Historical",
    "Year": 1999,
-   "Directed By": "Alan Parker",
-   "Written By": "Laura Jones, Alan Parker",
+   "Director": "Alan Parker",
+   "Writer": "Laura Jones, Alan Parker",
    "IsFavorite": "False"
  },
  {
@@ -103,17 +103,17 @@ const movies = [
    "Genre": "War",
    "Sub-Genre": "Vietnam",
    "Year": 1979,
-   "Directed By": "Francis Ford Coppola",
-   "Written By": "John Milius, Francis Ford Coppola",
+   "Director": "Francis Ford Coppola",
+   "Writer": "John Milius, Francis Ford Coppola",
    "IsFavorite": "False"
  },
  {
    "Title": "Chasing Sleep",
    "Genre": "Thriller",
    "Sub-Genre": "Surrealism",
-   "Year": 2001,
-   "Directed By": "Michael Walker",
-   "Written By": "Michael Walker",
+   "Year": 2000,
+   "Director": "Michael Walker",
+   "Writer": "Michael Walker",
    "IsFavorite": "True"
  },
  {
@@ -121,8 +121,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Found Footage",
    "Year": 2008,
-   "Directed By": "Matt Reeves",
-   "Written By": "Drew Goddard",
+   "Director": "Matt Reeves",
+   "Writer": "Drew Goddard",
    "IsFavorite": "False"
  },
  {
@@ -130,8 +130,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Drama",
    "Year": 2003,
-   "Directed By": "Michael Winterbottom",
-   "Written By": "Frank Cottrell Boyce",
+   "Director": "Michael Winterbottom",
+   "Writer": "Frank Cottrell Boyce",
    "IsFavorite": "False"
  },
  {
@@ -139,8 +139,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Real World",
    "Year": 2013,
-   "Directed By": "James Ward Byrkit",
-   "Written By": "James Ward Byrkit",
+   "Director": "James Ward Byrkit",
+   "Writer": "James Ward Byrkit",
    "IsFavorite": "False"
  },
  {
@@ -148,17 +148,17 @@ const movies = [
    "Genre": "Drama",
    "Sub-Genre": "Surrealism",
    "Year": 2013,
-   "Directed By": "Andrew Bujalski",
-   "Written By": "Andrew Bujalski",
+   "Director": "Andrew Bujalski",
+   "Writer": "Andrew Bujalski",
    "IsFavorite": "False"
  },
  {
    "Title": "Crumb",
    "Genre": "Documentary",
-   "Sub-Genre": "",
-   "Year": 1995,
-   "Directed By": "Terry Zwigoff",
-   "Written By": "",
+   "Sub-Genre": "N/A",
+   "Year": 1994,
+   "Director": "Terry Zwigoff",
+   "Writer": "N/A",
    "IsFavorite": "False"
  },
  {
@@ -166,8 +166,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Campy",
    "Year": 1997,
-   "Directed By": "Vincenzo Natali",
-   "Written By": "André Bijelic, Graeme Manson, Vincenzo Natali",
+   "Director": "Vincenzo Natali",
+   "Writer": "André Bijelic, Graeme Manson, Vincenzo Natali",
    "IsFavorite": "False"
  },
  {
@@ -175,8 +175,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Campy",
    "Year": 2001,
-   "Directed By": "Stuart Gordon",
-   "Written By": "Dennis Paoli",
+   "Director": "Stuart Gordon",
+   "Writer": "Dennis Paoli",
    "IsFavorite": "False"
  },
  {
@@ -184,8 +184,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Music",
    "Year": 2004,
-   "Directed By": "Ondi Timoner",
-   "Written By": "Ondi Timoner",
+   "Director": "Ondi Timoner",
+   "Writer": "Ondi Timoner",
    "IsFavorite": "False"
  },
  {
@@ -193,8 +193,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Psychological",
    "Year": 2002,
-   "Directed By": "Nick Willing",
-   "Written By": "Nick Willing, William Brookfield",
+   "Director": "Nick Willing",
+   "Writer": "Nick Willing, William Brookfield",
    "IsFavorite": "False"
  },
  {
@@ -202,8 +202,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Crime",
    "Year": 1975,
-   "Directed By": "Sidney Lumet",
-   "Written By": "Frank Pierson",
+   "Director": "Sidney Lumet",
+   "Writer": "Frank Pierson",
    "IsFavorite": "False"
  },
  {
@@ -211,8 +211,8 @@ const movies = [
    "Genre": "Comedy",
    "Sub-Genre": "Historical",
    "Year": 1994,
-   "Directors": "Tim Burton",
-   "Writers": "Scott Alexander, Larry Karaszewski",
+   "Director": "Tim Burton",
+   "Writer": "Scott Alexander, Larry Karaszewski",
    "IsFavorite": "False"
  },
  {
@@ -220,8 +220,8 @@ const movies = [
    "Genre": "Surrealism",
    "Sub-Genre": "Charlie Kaufman",
    "Year": 2004,
-   "Directed By": "Michel Gondry",
-   "Written By": "Charlie Kaufman",
+   "Director": "Michel Gondry",
+   "Writer": "Charlie Kaufman",
    "IsFavorite": "False"
  },
  {
@@ -229,8 +229,8 @@ const movies = [
    "Genre": "Surrealism",
    "Sub-Genre": "Cronenberg",
    "Year": 1999,
-   "Directed By": "David Cronenberg",
-   "Written By": "David Cronenberg",
+   "Director": "David Cronenberg",
+   "Writer": "David Cronenberg",
    "IsFavorite": "False"
  },
  {
@@ -238,8 +238,8 @@ const movies = [
    "Genre": "Drama",
    "Sub-Genre": "Supernatural",
    "Year": 2011,
-   "Directed By": "Alexander Sokurov",
-   "Written By": "Alexander Sokurov, Marina Koreneva, Yuri Arabov",
+   "Director": "Alexander Sokurov",
+   "Writer": "Alexander Sokurov, Marina Koreneva, Yuri Arabov",
    "IsFavorite": "False"
  },
  {
@@ -247,8 +247,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Lovecraft",
    "Year": 1986,
-   "Directed By": "Stuart Gordon",
-   "Written By": "Dennis Paoli",
+   "Director": "Stuart Gordon",
+   "Writer": "Dennis Paoli",
    "IsFavorite": "False"
  },
  {
@@ -256,8 +256,8 @@ const movies = [
    "Genre": "War",
    "Sub-Genre": "Vietnam",
    "Year": 1987,
-   "Directed By": "Stanley Kubrick",
-   "Written By": "Stanley Kubrick, Michael Herr, Gustav Hasford",
+   "Director": "Stanley Kubrick",
+   "Writer": "Stanley Kubrick, Michael Herr, Gustav Hasford",
    "IsFavorite": "False"
  },
  {
@@ -265,8 +265,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Thriller",
    "Year": 1997,
-   "Directed By": "Andrew Niccol",
-   "Written By": "Andrew Niccol",
+   "Director": "Andrew Niccol",
+   "Writer": "Andrew Niccol",
    "IsFavorite": "False"
  },
  {
@@ -274,8 +274,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Social Justice",
    "Year": 2017,
-   "Directed By": "Jordan Peele",
-   "Written By": "Jordan Peele",
+   "Director": "Jordan Peele",
+   "Writer": "Jordan Peele",
    "IsFavorite": "False"
  },
  {
@@ -283,8 +283,8 @@ const movies = [
    "Genre": "Comedy",
    "Sub-Genre": "Surrealism",
    "Year": 2001,
-   "Directed By": "Terry Zwigoff",
-   "Written By": "Daniel Clowes, Terry Zwigoff",
+   "Director": "Terry Zwigoff",
+   "Writer": "Daniel Clowes, Terry Zwigoff",
    "IsFavorite": "False"
  },
  {
@@ -292,17 +292,17 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Gangster",
    "Year": 1990,
-   "Directed By": "Martin Scorcese",
-   "Written By": "Nicholas Pileggi, Martin Scorsese",
+   "Director": "Martin Scorcese",
+   "Writer": "Nicholas Pileggi, Martin Scorsese",
    "IsFavorite": "False"
  },
  {
    "Title": "Harlan County U.S.A.",
    "Genre": "Documentary",
    "Sub-Genre": "Social Justice",
-   "Year": 1977,
-   "Directed By": "Barbara Kopple",
-   "Written By": "",
+   "Year": 1976,
+   "Director": "Barbara Kopple",
+   "Writer": "N/A",
    "IsFavorite": "False"
  },
  {
@@ -310,8 +310,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Supernatural",
    "Year": 2018,
-   "Directed By": "Ari Aster",
-   "Written By": "Ari Aster",
+   "Director": "Ari Aster",
+   "Writer": "Ari Aster",
    "IsFavorite": "False"
  },
  {
@@ -319,8 +319,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Classic",
    "Year": 1959,
-   "Directed By": "William Castle",
-   "Written By": "Robb White",
+   "Director": "William Castle",
+   "Writer": "Robb White",
    "IsFavorite": "False"
  },
  {
@@ -328,8 +328,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Lovecraft",
    "Year": 1994,
-   "Directed By": "John Carpenter",
-   "Written By": "Michael De Luca",
+   "Director": "John Carpenter",
+   "Writer": "Michael De Luca",
    "IsFavorite": "True"
  },
  {
@@ -337,8 +337,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Extraterrestrial",
    "Year": 1978,
-   "Directed By": "Philip Kaufman",
-   "Written By": "W. D. Richter",
+   "Director": "Philip Kaufman",
+   "Writer": "W. D. Richter",
    "IsFavorite": "False"
  },
  {
@@ -346,17 +346,17 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Supernatural",
    "Year": 2014,
-   "Directed By": "David Robert Mitchell",
-   "Written By": "David Robert Mitchell",
+   "Director": "David Robert Mitchell",
+   "Writer": "David Robert Mitchell",
    "IsFavorite": "False"
  },
  {
-   "Title": "JFK.",
+   "Title": "JFK",
    "Genre": "Thriller",
    "Sub-Genre": "Conspiracy",
    "Year": 1991,
-   "Directed By": "Oliver Stone",
-   "Written By": "Oliver Stone, Zachary Sklar",
+   "Director": "Oliver Stone",
+   "Writer": "Oliver Stone, Zachary Sklar",
    "IsFavorite": "False"
  },
  {
@@ -364,8 +364,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Creature",
    "Year": 1975,
-   "Directed By": "Steven Spielberg",
-   "Written By": "Peter Benchley, Carl Gottlieb",
+   "Director": "Steven Spielberg",
+   "Writer": "Peter Benchley, Carl Gottlieb",
    "IsFavorite": "False"
  },
  {
@@ -373,8 +373,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Comedy",
    "Year": 2007,
-   "Directed By": "Seth Gordon",
-   "Written By": "",
+   "Director": "Seth Gordon",
+   "Writer": "N/A",
    "IsFavorite": "False"
  },
  {
@@ -382,8 +382,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Comedy",
    "Year": 2014,
-   "Directed By": "Matthew Bauckman, Jaret Belliveau",
-   "Written By": "",
+   "Director": "Matthew Bauckman, Jaret Belliveau",
+   "Writer": "N/A",
    "IsFavorite": "False"
  },
  {
@@ -391,8 +391,8 @@ const movies = [
    "Genre": "Drama",
    "Sub-Genre": "Social Justice",
    "Year": 1995,
-   "Directed By": "Mathieu Kassovitz",
-   "Written By": "Mathieu Kassovitz",
+   "Director": "Mathieu Kassovitz",
+   "Writer": "Mathieu Kassovitz",
    "IsFavorite": "True"
  },
  {
@@ -400,8 +400,8 @@ const movies = [
    "Genre": "Horror ",
    "Sub-Genre": "Supernatural",
    "Year": 2008,
-   "Directed By": "Joel Anderson",
-   "Written By": "Joel Anderson",
+   "Director": "Joel Anderson",
+   "Writer": "Joel Anderson",
    "IsFavorite": "False"
  },
  {
@@ -409,8 +409,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Comedy",
    "Year": 2014,
-   "Directed By": "David Gregory",
-   "Written By": "",
+   "Director": "David Gregory",
+   "Writer": "N/A",
    "IsFavorite": "False"
  },
  {
@@ -418,8 +418,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Conspiracy",
    "Year": 2013,
-   "Directed By": "John Lundberg",
-   "Written By": "Mark Pilkington",
+   "Director": "John Lundberg",
+   "Writer": "Mark Pilkington",
    "IsFavorite": "True"
  },
  {
@@ -427,8 +427,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Comedy",
    "Year": 2007,
-   "Directed By": "Cullen Hoback",
-   "Written By": "",
+   "Director": "Cullen Hoback",
+   "Writer": "N/A",
    "IsFavorite": "False"
  },
  {
@@ -436,8 +436,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Extraterrestrial",
    "Year": 2010,
-   "Directed By": "Gareth Edwards",
-   "Written By": "Gareth Edwards",
+   "Director": "Gareth Edwards",
+   "Writer": "Gareth Edwards",
    "IsFavorite": "False"
  },
  {
@@ -445,8 +445,8 @@ const movies = [
    "Genre": "Surrealism",
    "Sub-Genre": "Lynch",
    "Year": 2001,
-   "Directed By": "David Lynch",
-   "Written By": "David Lynch",
+   "Director": "David Lynch",
+   "Writer": "David Lynch",
    "IsFavorite": "False"
  },
  {
@@ -454,8 +454,8 @@ const movies = [
    "Genre": "Surrealism",
    "Sub-Genre": "Cronenberg",
    "Year": 1991,
-   "Directed By": "David Cronenberg",
-   "Written By": "David Cronenberg",
+   "Director": "David Cronenberg",
+   "Writer": "David Cronenberg",
    "IsFavorite": "False"
  },
  {
@@ -463,8 +463,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Psychological",
    "Year": 1971,
-   "Directed By": "Clint Eastwood",
-   "Written By": "Jo Heims, Dean Riesner",
+   "Director": "Clint Eastwood",
+   "Writer": "Jo Heims, Dean Riesner",
    "IsFavorite": "False"
  },
  {
@@ -472,8 +472,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Psychological",
    "Year": 2004,
-   "Directed By": "Shane Carruth",
-   "Written By": "Shane Carruth",
+   "Director": "Shane Carruth",
+   "Writer": "Shane Carruth",
    "IsFavorite": "False"
  },
  {
@@ -481,17 +481,17 @@ const movies = [
    "Genre": "Tarantino",
    "Sub-Genre": "Crime",
    "Year": 1994,
-   "Directed By": "Quentin Tarantino",
-   "Written By": "Quentin Tarantino",
+   "Director": "Quentin Tarantino",
+   "Writer": "Quentin Tarantino",
    "IsFavorite": "False"
  },
  {
    "Title": "Raging Bull",
    "Genre": "Drama",
-   "Sub-Genre": "",
+   "Sub-Genre": "N/A",
    "Year": 1980,
-   "Directed By": "Martin Scorcese",
-   "Written By": "Paul Schrader, Mardik Martin",
+   "Director": "Martin Scorcese",
+   "Writer": "Paul Schrader, Mardik Martin",
    "IsFavorite": "False"
  },
  {
@@ -499,8 +499,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Campy",
    "Year": 1984,
-   "Directed By": "Alex Cox",
-   "Written By": "Alex Cox",
+   "Director": "Alex Cox",
+   "Writer": "Alex Cox",
    "IsFavorite": "True"
  },
  {
@@ -508,8 +508,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Campy",
    "Year": 1987,
-   "Directed By": "Paul Verhoeven",
-   "Written By": "Edward Neumeier",
+   "Director": "Paul Verhoeven",
+   "Writer": "Edward Neumeier",
    "IsFavorite": "False"
  },
  {
@@ -517,8 +517,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Conspiracy",
    "Year": 2012,
-   "Directed By": "Rodney Ascher",
-   "Written By": "",
+   "Director": "Rodney Ascher",
+   "Writer": "N/A",
    "IsFavorite": "False"
  },
  {
@@ -526,8 +526,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Psychological",
    "Year": 1968,
-   "Directed By": "Roman Polanski",
-   "Written By": "Roman Polanski",
+   "Director": "Roman Polanski",
+   "Writer": "Roman Polanski",
    "IsFavorite": "False"
  },
  {
@@ -535,8 +535,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Comedy",
    "Year": 2008,
-   "Directed By": "Juan Carlos Piñeiro Escoriaza",
-   "Written By": "Peter Schieffelin Brauer,  Victor Piñeiro Escoriaza",
+   "Director": "Juan Carlos Piñeiro Escoriaza",
+   "Writer": "Peter Schieffelin Brauer,  Victor Piñeiro Escoriaza",
    "IsFavorite": "False"
  },
  {
@@ -544,8 +544,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Supernatural",
    "Year": 2001,
-   "Directed By": "Brad Anderson",
-   "Written By": "Brad Anderson, Stephen Gevedon",
+   "Director": "Brad Anderson",
+   "Writer": "Brad Anderson, Stephen Gevedon",
    "IsFavorite": "False"
  },
  {
@@ -553,8 +553,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Campy",
    "Year": 1983,
-   "Directed By": "Robert Hiltzik",
-   "Written By": "Robert Hiltzik",
+   "Director": "Robert Hiltzik",
+   "Writer": "Robert Hiltzik",
    "IsFavorite": "False"
  },
  {
@@ -562,8 +562,8 @@ const movies = [
    "Genre": "Drama",
    "Sub-Genre": "Comedy",
    "Year": 1986,
-   "Directed By": "Rob Reiner",
-   "Written By": "Bruce A. Evans, Raynold Gideon",
+   "Director": "Rob Reiner",
+   "Writer": "Bruce A. Evans, Raynold Gideon",
    "IsFavorite": "False"
  },
  {
@@ -571,8 +571,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Campy",
    "Year": 1997,
-   "Directed By": "Paul Verhoeven",
-   "Written By": "Edward Neumeier",
+   "Director": "Paul Verhoeven",
+   "Writer": "Edward Neumeier",
    "IsFavorite": "False"
  },
  {
@@ -580,8 +580,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Drama",
    "Year": 1950,
-   "Directed By": "Billy Wilder",
-   "Written By": "Charles Brackett, Billy Wilder, D. M. Marshman Jr.",
+   "Director": "Billy Wilder",
+   "Writer": "Charles Brackett, Billy Wilder, D. M. Marshman Jr.",
    "IsFavorite": "False"
  },
  {
@@ -589,8 +589,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Crime",
    "Year": 2010,
-   "Directed By": "Erol Morris",
-   "Written By": "",
+   "Director": "Erol Morris",
+   "Writer": "N/A",
    "IsFavorite": "False"
  },
  {
@@ -598,8 +598,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Classic",
    "Year": 1951,
-   "Directed By": "John Huston",
-   "Written By": "John Huston, James Agee, Peter Viertel, John Collier",
+   "Director": "John Huston",
+   "Writer": "John Huston, James Agee, Peter Viertel, John Collier",
    "IsFavorite": "False"
  },
  {
@@ -607,8 +607,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Thriller",
    "Year": 1971,
-   "Directed By": "Robert Wise",
-   "Written By": "Nelson Gidding",
+   "Director": "Robert Wise",
+   "Writer": "Nelson Gidding",
    "IsFavorite": "False"
  },
  {
@@ -616,8 +616,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Supernatural",
    "Year": 2014,
-   "Directed By": "Jennifer Kent",
-   "Written By": "Jennifer Kent",
+   "Director": "Jennifer Kent",
+   "Writer": "Jennifer Kent",
    "IsFavorite": "False"
  },
  {
@@ -625,8 +625,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Found Footage",
    "Year": 1999,
-   "Directed By": "Daniel Myrick, Eduardo Sanchez",
-   "Written By": "Daniel Myrick, Eduardo Sanchez",
+   "Director": "Daniel Myrick, Eduardo Sanchez",
+   "Writer": "Daniel Myrick, Eduardo Sanchez",
    "IsFavorite": "True"
  },
  {
@@ -634,8 +634,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Social Justice",
    "Year": 2003,
-   "Directed By": "Mark Achbar, Jennifer Abbott",
-   "Written By": "Joel Bakan, Harold Crooks, Mark Achbar",
+   "Director": "Mark Achbar, Jennifer Abbott",
+   "Writer": "Joel Bakan, Harold Crooks, Mark Achbar",
    "IsFavorite": "False"
  },
  {
@@ -643,8 +643,8 @@ const movies = [
    "Genre": "War",
    "Sub-Genre": "Vietnam",
    "Year": 1978,
-   "Directed By": "Michael Cimino",
-   "Written By": "Deric Washburn",
+   "Director": "Michael Cimino",
+   "Writer": "Deric Washburn",
    "IsFavorite": "False"
  },
  {
@@ -652,8 +652,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Gangster",
    "Year": 2006,
-   "Directed By": "Martin Scorcese",
-   "Written By": "William Monahan",
+   "Director": "Martin Scorcese",
+   "Writer": "William Monahan",
    "IsFavorite": "False"
  },
  {
@@ -661,8 +661,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Comedy",
    "Year": 2008,
-   "Directed By": "Keven McAlester",
-   "Written By": "",
+   "Director": "Keven McAlester",
+   "Writer": "N/A",
    "IsFavorite": "False"
  },
  {
@@ -670,8 +670,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Psychological",
    "Year": 1997,
-   "Directed By": "David Fincher",
-   "Written By": "John Brancato, Michael Ferris",
+   "Director": "David Fincher",
+   "Writer": "John Brancato, Michael Ferris",
    "IsFavorite": "False"
  },
  {
@@ -679,8 +679,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Creature",
    "Year": 1996,
-   "Directed By": "Stephen Hopkins",
-   "Written By": "William Goldman",
+   "Director": "Stephen Hopkins",
+   "Writer": "William Goldman",
    "IsFavorite": "False"
  },
  {
@@ -688,8 +688,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Classic",
    "Year": 1963,
-   "Directed By": "Robert Wise",
-   "Written By": "Nelson Gidding",
+   "Director": "Robert Wise",
+   "Writer": "Nelson Gidding",
    "IsFavorite": "False"
  },
  {
@@ -697,8 +697,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Crime",
    "Year": 2012,
-   "Directed By": "Bart Layton",
-   "Written By": "",
+   "Director": "Bart Layton",
+   "Writer": "N/A",
    "IsFavorite": "False"
  },
  {
@@ -706,8 +706,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Classic",
    "Year": 1933,
-   "Directed By": "James Whale",
-   "Written By": "R. C. Sherriff",
+   "Director": "James Whale",
+   "Writer": "R. C. Sherriff",
    "IsFavorite": "False"
  },
  {
@@ -715,8 +715,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Horror",
    "Year": 2015,
-   "Directed By": "Karyn Kusama",
-   "Written By": "Phil Hay, Matt Manfredi",
+   "Director": "Karyn Kusama",
+   "Writer": "Phil Hay, Matt Manfredi",
    "IsFavorite": "False"
  },
  {
@@ -724,8 +724,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Classic",
    "Year": 1964,
-   "Directed By": "Sidney Salkow, Ubaldo B. Ragona",
-   "Written By": "Logan Swanson, William F. Leicester",
+   "Director": "Sidney Salkow, Ubaldo B. Ragona",
+   "Writer": "Logan Swanson, William F. Leicester",
    "IsFavorite": "False"
  },
  {
@@ -733,8 +733,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Conspiracy",
    "Year": 2004,
-   "Directed By": "Johnathan Demme",
-   "Written By": "Daniel Pyne, Dean Deorgaris",
+   "Director": "Johnathan Demme",
+   "Writer": "Daniel Pyne, Dean Deorgaris",
    "IsFavorite": "False"
  },
  {
@@ -742,8 +742,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Creature",
    "Year": 2007,
-   "Directed By": "Frank Darabont",
-   "Written By": "Frank Darabont",
+   "Director": "Frank Darabont",
+   "Writer": "Frank Darabont",
    "IsFavorite": "False"
  },
  {
@@ -751,8 +751,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Supernatural",
    "Year": 2002,
-   "Directed By": "Mark Pellington",
-   "Written By": "Richard Hatem",
+   "Director": "Mark Pellington",
+   "Writer": "Richard Hatem",
    "IsFavorite": "True"
  },
  {
@@ -760,8 +760,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Classic",
    "Year": 1955,
-   "Directed By": "Charles Laughton",
-   "Written By": "James Agee",
+   "Director": "Charles Laughton",
+   "Writer": "James Agee",
    "IsFavorite": "False"
  },
  {
@@ -769,8 +769,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Horror",
    "Year": 2015,
-   "Directed By": "Rodney Ascher",
-   "Written By": "",
+   "Director": "Rodney Ascher",
+   "Writer": "N/A",
    "IsFavorite": "True"
  },
  {
@@ -778,8 +778,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Campy",
    "Year": 1999,
-   "Directed By": "Roman Polanski",
-   "Written By": "John Brownjohn, Roman Polanski, Enrique Urbizu",
+   "Director": "Roman Polanski",
+   "Writer": "John Brownjohn, Roman Polanski, Enrique Urbizu",
    "IsFavorite": "False"
  },
  {
@@ -787,8 +787,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Supernatural",
    "Year": 2001,
-   "Directed By": "Alejandro Amenábar",
-   "Written By": "Alejandro Amenábar",
+   "Director": "Alejandro Amenábar",
+   "Writer": "Alejandro Amenábar",
    "IsFavorite": "False"
  },
  {
@@ -796,8 +796,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Post-Apocalyptic",
    "Year": 1985,
-   "Directed By": "Geoff Murphy",
-   "Written By": "Bill Baer, Bruno Lawrence, Sam Pillsbury",
+   "Director": "Geoff Murphy",
+   "Writer": "Bill Baer, Bruno Lawrence, Sam Pillsbury",
    "IsFavorite": "False"
  },
  {
@@ -805,8 +805,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Courtroom",
    "Year": 1997,
-   "Directed By": "Francis Ford Coppola",
-   "Written By": "Francis Ford Coppola",
+   "Director": "Francis Ford Coppola",
+   "Writer": "Francis Ford Coppola",
    "IsFavorite": "False"
  },
  {
@@ -814,17 +814,17 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Campy",
    "Year": 1985,
-   "Directed By": "Dan O'Bannon",
-   "Written By": "Dan O'Bannon",
+   "Director": "Dan O'Bannon",
+   "Writer": "Dan O'Bannon",
    "IsFavorite": "False"
  },
  {
    "Title": "The Sandlot",
    "Genre": "Comedy",
-   "Sub-Genre": "",
-   "Year": 1997,
-   "Directed By": "David Mickey Evans",
-   "Written By": "David Mickey Evans, Robert Gunter",
+   "Sub-Genre": "N/A",
+   "Year": 1993,
+   "Director": "David Mickey Evans",
+   "Writer": "David Mickey Evans, Robert Gunter",
    "IsFavorite": "False"
  },
  {
@@ -832,17 +832,17 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Crime",
    "Year": 2009,
-   "Directed By": "Juan Jose Campanella",
-   "Written By": "Juan Jose Campanella, Eduardo Sacheri",
-   "IsFavorite": "Foreign"
+   "Director": "Juan Jose Campanella",
+   "Writer": "Juan Jose Campanella, Eduardo Sacheri",
+   "IsFavorite": "False"
  },
  {
    "Title": "The Shining",
    "Genre": "Horror",
    "Sub-Genre": "Psychological",
    "Year": 1980,
-   "Directed By": "Stanley Kubrick",
-   "Written By": "Stanley Kubrick, Diane Johnson",
+   "Director": "Stanley Kubrick",
+   "Writer": "Stanley Kubrick, Diane Johnson",
    "IsFavorite": "True"
  },
  {
@@ -850,8 +850,8 @@ const movies = [
    "Genre": "Thriller",
    "Sub-Genre": "Psychological",
    "Year": 1976,
-   "Directed By": "Roman Polanski",
-   "Written By": "Roland Topor, Gérard Brach, Roman Polanski",
+   "Director": "Roman Polanski",
+   "Writer": "Roland Topor, Gérard Brach, Roman Polanski",
    "IsFavorite": "False"
  },
  {
@@ -859,8 +859,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Creature",
    "Year": 1982,
-   "Directed By": "John Carpenter",
-   "Written By": "Bill Lancaster",
+   "Director": "John Carpenter",
+   "Writer": "Bill Lancaster",
    "IsFavorite": "False"
  },
  {
@@ -868,8 +868,8 @@ const movies = [
    "Genre": "Surrealism",
    "Sub-Genre": "Psychological",
    "Year": 1962,
-   "Directed By": "Orson Welles",
-   "Written By": "Orson Welles",
+   "Director": "Orson Welles",
+   "Writer": "Orson Welles",
    "IsFavorite": "True"
  },
  {
@@ -877,8 +877,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Crime",
    "Year": 2012,
-   "Directed By": "Angelo J. Guglielmo Jr.",
-   "Written By": "",
+   "Director": "Angelo J. Guglielmo Jr.",
+   "Writer": "N/A",
    "IsFavorite": "False"
  },
  {
@@ -886,8 +886,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Horror",
    "Year": 1984,
-   "Directed By": "Mick Jackson",
-   "Written By": "Barry Hines",
+   "Director": "Mick Jackson",
+   "Writer": "Barry Hines",
    "IsFavorite": "True"
  },
  {
@@ -895,8 +895,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Campy",
    "Year": 1990,
-   "Directed By": "Paul Verhoeven",
-   "Written By": "Dan O'Bannon, Gary Oldman, Ronald Shusett",
+   "Director": "Paul Verhoeven",
+   "Writer": "Dan O'Bannon, Gary Oldman, Ronald Shusett",
    "IsFavorite": "False"
  },
  {
@@ -904,8 +904,8 @@ const movies = [
    "Genre": "Science Fiction",
    "Sub-Genre": "Psychological",
    "Year": 2013,
-   "Directed By": "Shane Carruth",
-   "Written By": "Shane Carruth",
+   "Director": "Shane Carruth",
+   "Writer": "Shane Carruth",
    "IsFavorite": "False"
  },
  {
@@ -913,8 +913,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Drama",
    "Year": 2008,
-   "Directed By": "Julie Checkoway",
-   "Written By": "Julie Checkoway, Neal Checkoway, Chris A. Peterson",
+   "Director": "Julie Checkoway",
+   "Writer": "Julie Checkoway, Neal Checkoway, Chris A. Peterson",
    "IsFavorite": "False"
  },
  {
@@ -922,8 +922,8 @@ const movies = [
    "Genre": "Horror",
    "Sub-Genre": "Classic",
    "Year": 1953,
-   "Directed By": "Byron Haskin",
-   "Written By": "Barré Lyndon",
+   "Director": "Byron Haskin",
+   "Writer": "Barré Lyndon",
    "IsFavorite": "False"
  },
  {
@@ -931,8 +931,8 @@ const movies = [
    "Genre": "Drama",
    "Sub-Genre": "Psychological",
    "Year": 2014,
-   "Directed By": "Damien Chazelle",
-   "Written By": "Damien Chazelle",
+   "Director": "Damien Chazelle",
+   "Writer": "Damien Chazelle",
    "IsFavorite": "False"
  },
  {
@@ -940,17 +940,17 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Social Justice",
    "Year": 2005,
-   "Directed By": "Eugene Jareki ",
-   "Written By": "Eugene Jareki",
+   "Director": "Eugene Jareki ",
+   "Writer": "Eugene Jareki",
    "IsFavorite": "False"
  },
  {
-   "Title": "Willy Wonka and the Chocolate Factory",
+   "Title": "Willy Wonka & The Chocolate Factory",
    "Genre": "Musical",
    "Sub-Genre": "Comedy",
    "Year": 1971,
-   "Directed By": "Mel Stuart",
-   "Written By": "Roald Dahl, David Seltzer",
+   "Director": "Mel Stuart",
+   "Writer": "Roald Dahl, David Seltzer",
    "IsFavorite": "True"
  },
  {
@@ -958,8 +958,8 @@ const movies = [
    "Genre": "Documentary",
    "Sub-Genre": "Comedy",
    "Year": 2004,
-   "Directed By": "Eric Chaikin, Julian Petrillo",
-   "Written By": "",
+   "Director": "Eric Chaikin, Julian Petrillo",
+   "Writer": "N/A",
    "IsFavorite": "False"
  }
-]
+];

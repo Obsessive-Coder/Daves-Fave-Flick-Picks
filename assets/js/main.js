@@ -11,86 +11,81 @@ $(() => {
       return;
     }
 
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+
     currentPage = newPageNumber;
 
     $('#page-number').text(currentPage);
 
-    const nextPageMovies = getPageMovies();
-    console.log(nextPageMovies);
+    const nextPageMovies = getPageMovies(movies);
     getMovieData(nextPageMovies);
   });
 
-  function getPageMovies() {
+  $('#daves-fave').on('click', function () {
+    isFavesFirst = true;
+    currentPage = 1;
+    $('#page-number').text(currentPage);
+
+    const sortedMovies = sortMovies(movies);
+
+    const pageMovies = getPageMovies(sortedMovies);
+
+    getMovieData(pageMovies);
+  });
+
+  function getPageMovies(sortedMovies) {
     const pageMovies = [];
 
-    let startingIndex = 0;
-
-    switch (currentPage) {
-      case 2:
-        startingIndex = 25;
-        break;
-      case 3:
-        startingIndex = 50;
-        break;
-      case 4:
-        startingIndex = 75;
-        break;
-      case 5:
-        startingIndex = 100;
-        break;
-      case 6:
-        startingIndex = 125;
-        break;
-      default:
-        startingIndex = 0;
-        break;
-    }
+    let startingIndex = currentPage * 25 - 25;
 
     for (let i = startingIndex;
-      (i < (startingIndex + 25)) && i < movies.length; i++) {
-      pageMovies.push(movies[i]);
+      (i < sortedMovies.length) && (i < startingIndex + 25); i++) {
+      pageMovies.push(sortedMovies[i]);
     }
 
     return pageMovies;
   }
 
   function getMovieData(pageMovies) {
-    const formattedMovies = [];
+    let formattedMovies = [];
     let requestCount = 0;
 
     $(pageMovies).each((index, pageMovie) => {
-      // Add movie title to favorites array.
-      if (pageMovie.IsFavorite === "True") {
-        favoriteMovies.push(pageMovie.Title);
-      }
-
-      $.ajax('https://www.omdbapi.com/?apikey=e85aad&&t=' + pageMovie.Title + '&y=' + pageMovie["Release Date"])
+      $.ajax('https://www.omdbapi.com/?apikey=e85aad&&t=' + pageMovie.Title + '&y=' + pageMovie.Year)
+      // $.ajax('https://www.omdbapi.com/?apikey=e85aad&&t=' + pageMovie.Title)
         .done((movieData) => {
           requestCount += 1;
           // console.log(movieData);
 
-          const posterUrl = movieData.Poster !== "N/A" ? movieData.Poster : "https://via.placeholder.com/300x500.png?text=No+poster";
+          let posterUrl = (movieData.Poster === "N/A" || !movieData.Poster) ? "https://via.placeholder.com/300x500.png?text=No+poster" : movieData.Poster;
 
           let formattedMovie = {
-            Title: movieData.Title,
+            Title: movieData.Title ? movieData.Title : pageMovie.Title,
             Poster: posterUrl,
             Plot: movieData.Plot,
-            Genre: movieData.Genre,
-            Year: movieData.Year,
-            Director: movieData.Director,
-            Writer: movieData.Writer,
-            IMDB: movieData.imdbRating,
-            Metascore: movieData.Metascore
+            Genre: movieData.Genre ? movieData.Genre : pageMovie.Genre,
+            Year: movieData.Year ? movieData.Year : pageMovie.Year,
+            Director: movieData.Director ? movieData.Director : pageMovie.Director,
+            Writer: movieData.Writer ? movieData.Writer : pageMovie.Writer,
+            IMDB: movieData.imdbRating ? movieData.imdbRating : 'N/A',
+            Metascore: movieData.Metascore ? movieData.Metascore : 'N/A',
+            IsFavorite: pageMovie.IsFavorite
           };
+
+          if(pageMovie.Title === "Lost Soul") {
+            formattedMovie.Genre = pageMovie.Genre;
+            formattedMovie.Year = pageMovie.Year;
+            formattedMovie.Writer = pageMovie.Writer;
+            formattedMovie.Director = pageMovie.Director;
+          }
 
           formattedMovies.push(formattedMovie);
 
-          // if (formattedMovies.length === pageMovies.length) {
           if (requestCount === pageMovies.length) {
-            // console.log(formattedMovies.length);
-
-            getTrailer(formattedMovie.Title);
-
+            if (isFavesFirst) {
+              formattedMovies = sortMovies(formattedMovies);
+              isFavesFirst = false;
+            }
 
             showMovies(formattedMovies);
           }
@@ -109,7 +104,7 @@ $(() => {
   }
 
   function getMovieHTML(movie) {
-    const movieCard = $('<div class="card my-5">');
+    const movieCard = $('<div class="card mb-5">');
 
     const cardBody = $('<div class="card-body d-md-flex p-0">');
 
@@ -138,25 +133,24 @@ $(() => {
       Metascore: movie.Metascore
     };
 
-    const infoHTML = getMovieInfoSection(movie.Title, movieInfo);
+    const infoHTML = getMovieInfoSection(movie.Title, movieInfo, movie.IsFavorite);
     cardContent.append(infoHTML);
 
     return cardContent;
   }
 
-  function getMovieInfoSection(title, movieInfo) {
+  function getMovieInfoSection(title, movieInfo, isFavorite) {
     const infoHTML = $('<div class="d-flex flex-wrap align-items-center movie-info">');
+
     for (const key in movieInfo) {
       if (movieInfo.hasOwnProperty(key)) {
         const infoItem = getMovieInfoItem(key, movieInfo[key]);
         infoHTML.append(infoItem);
       }
+    }
 
-      if (key === 'Metascore') {
-        if (favoriteMovies.includes(title)) {
-          infoHTML.append(getFavoriteItem());
-        }
-      }
+    if (isFavorite === 'True') {
+      infoHTML.append(getFavoriteItem());
     }
 
     return infoHTML;
@@ -179,19 +173,24 @@ $(() => {
     return favoriteItem;
   }
 
-  function getTrailer(title) {
-    $.ajax('http://simpleapi.traileraddict.com/greenberg/trailer')
-    .done((result) => {
-      console.log(result);
+  function sortMovies(unsortedMovies) {
+    unsortedMovies = unsortedMovies.sort(function (a, b) {
+      if (a.IsFavorite < b.IsFavorite) {
+        return 1;
+      } else if (a.IsFavorite > b.IsFavorite) {
+        return -1;
+      }
+      return 0;
     });
+
+    return unsortedMovies;
   }
 
-  const favoriteMovies = [];
+  let favoriteMovies = [];
   let currentPage = 1;
-
-  const pageMovies = getPageMovies();
+  let isFavesFirst = false;
 
   $('#page-number').text(currentPage);
 
-  getMovieData(pageMovies);
+  getMovieData(getPageMovies(movies));
 });
