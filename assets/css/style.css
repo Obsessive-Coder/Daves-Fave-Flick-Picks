@@ -31,6 +31,11 @@ body {
   color: #FF8C00;
 }
 
+.tmdb {
+  width: 48px;
+  height: 48px;
+}
+
 @media only screen and (min-width: 920px){
   .movie-info-item {
     font-size: x-large;

@@ -60,36 +60,40 @@ $(() => {
 
     $(pageMovies).each((index, pageMovie) => {
       // Add movie title to favorites array.
-      if (pageMovie.isFavorite) {
-        favoriteMovies.push(pageMovie.title);
+      if (pageMovie.IsFavorite === "True") {
+        favoriteMovies.push(pageMovie.Title);
       }
 
-      $.ajax('https://www.omdbapi.com/?apikey=e85aad&&t=' + pageMovie.title + '&y=' + pageMovie.year)
+      $.ajax('https://www.omdbapi.com/?apikey=e85aad&&t=' + pageMovie.Title + '&y=' + pageMovie["Release Date"])
         .done((movieData) => {
           requestCount += 1;
-          if(movieData.hasOwnProperty("Error")) {
-            return console.log(movieData.Error);
+          // console.log(movieData);
+
+          const posterUrl = movieData.Poster !== "N/A" ? movieData.Poster : "https://via.placeholder.com/300x500.png?text=No+poster";
+
+          let formattedMovie = {
+            Title: movieData.Title,
+            Poster: posterUrl,
+            Plot: movieData.Plot,
+            Genre: movieData.Genre,
+            Year: movieData.Year,
+            Director: movieData.Director,
+            Writer: movieData.Writer,
+            IMDB: movieData.imdbRating,
+            Metascore: movieData.Metascore
+          };
+
+          formattedMovies.push(formattedMovie);
+
+          // if (formattedMovies.length === pageMovies.length) {
+          if (requestCount === pageMovies.length) {
+            // console.log(formattedMovies.length);
+
+            getTrailer(formattedMovie.Title);
+
+
+            showMovies(formattedMovies);
           }
-          // if(!movieData.hasOwnProperty('Error')){
-            const formattedMovie = {
-              Title: movieData.Title,
-              Poster: movieData.Poster,
-              Plot: movieData.Plot,
-              Genre: movieData.Genre,
-              Year: movieData.Year,
-              Director: movieData.Director,
-              Writer: movieData.Writer,
-              IMDB: movieData.imdbRating,
-              Metascore: movieData.Metascore
-            };
-
-            formattedMovies.push(formattedMovie);
-
-            // if (formattedMovies.length === pageMovies.length) {
-              if(requestCount === pageMovies.length) {
-              showMovies(formattedMovies);
-            }
-          // }
         });
     });
   }
@@ -128,8 +132,8 @@ $(() => {
     const movieInfo = {
       Genre: movie.Genre,
       Year: movie.Year,
-      Director: movie.Director,
-      Writer: movie.Writer,
+      "Director(s)": movie.Director,
+      "Writer(s)": movie.Writer,
       IMDB: movie.IMDB,
       Metascore: movie.Metascore
     };
@@ -173,6 +177,13 @@ $(() => {
     favoriteItem.append('<strong class="mx-1">Dave\'s Fave!</strong>');
 
     return favoriteItem;
+  }
+
+  function getTrailer(title) {
+    $.ajax('http://simpleapi.traileraddict.com/greenberg/trailer')
+    .done((result) => {
+      console.log(result);
+    });
   }
 
   const favoriteMovies = [];
