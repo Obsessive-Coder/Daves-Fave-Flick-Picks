@@ -4,10 +4,7 @@ $(() => {
 
     const newPageNumber = currentPage + pageChangeAmount;
 
-    if (newPageNumber > movies.length / 25 + 1) {
-      return;
-    }
-    if (newPageNumber < 1) {
+    if ((newPageNumber > movies.length / 25 + 1) || (newPageNumber < 1)) {
       return;
     }
 
@@ -72,6 +69,7 @@ $(() => {
             IsFavorite: pageMovie.IsFavorite
           };
 
+          // FIXME: this is a hack
           if(pageMovie.Title === "Lost Soul") {
             formattedMovie.Genre = pageMovie.Genre;
             formattedMovie.Year = pageMovie.Year;
