@@ -44,6 +44,10 @@ footer {
   height: 48px;
 }
 
+.created-by {
+  font-size: xx-large;
+}
+
 @media only screen and (min-width: 920px){
   .movie-info-item {
     font-size: x-large;
@@ -57,5 +61,9 @@ footer {
 @media only screen and (max-width: 768px){
   .movie-info-item {
     font-size: large;
+  }
+
+  .created-by {
+    font-size: x-large;
   }
 }
