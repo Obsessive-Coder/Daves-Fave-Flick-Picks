@@ -11,7 +11,7 @@
 </p>
 <br>
 <p align="center">
-  <img src="" width="550">
+  <img src="https://github.com/Obsessive-Coder/Daves-Fave-Flick-Picks/blob/master/assets/images/screenshots/top.png?raw=true" width="550">
 
-  <img src="" width="550">
+  <img src="https://github.com/Obsessive-Coder/Daves-Fave-Flick-Picks/blob/master/assets/images/screenshots/footer.png?raw=true" width="550">
 </p>
