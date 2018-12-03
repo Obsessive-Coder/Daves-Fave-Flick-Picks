@@ -13,5 +13,5 @@
 <p align="center">
   <img src="https://github.com/Obsessive-Coder/Daves-Fave-Flick-Picks/blob/master/assets/images/screenshots/top.png?raw=true" width="550">
 
-  <img src="https://github.com/Obsessive-Coder/Daves-Fave-Flick-Picks/blob/master/assets/images/screenshots/footer.png?raw=true" width="550">
+  <img style="margin-top: 25px;" src="https://github.com/Obsessive-Coder/Daves-Fave-Flick-Picks/blob/master/assets/images/screenshots/footer.png?raw=true" width="550">
 </p>
