@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
     crossorigin="anonymous">
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+    crossorigin="anonymous">
+
   <link href="https://fonts.googleapis.com/css?family=Oleo+Script" rel="stylesheet">
 
   <!-- Custom CSS -->
@@ -31,12 +35,12 @@
   <script src="assets/js/main.js"></script>
 </head>
 
-<body class="text-center px-3 px-md-5">
+<body class="text-center">
   <header class="text-light">
     <h1 class="title oleo-font">Dave's&nbsp; Fave&nbsp; Flick&nbsp; Picks</h1>
   </header>
 
-  <main class="container-fluid pb-3">
+  <main class="container-fluid px-3 px-md-5">
     <header class="text-left">
       <button id="daves-fave" class="btn btn-outline-warning rounded-0 my-3">Dave's Faves</button>
     </header>
@@ -56,17 +60,44 @@
     </div>
   </main>
 
-  <footer class="py-3 mt-5">
+  <footer class="d-flex flex-column flex-md-row justify-content-center py-2 mt-3">
     <!-- My links and copyright -->
-    <p class="text-secondary">Created by&nbsp;
-      <a target="_blank" href="https://www.linkedin.com/in/jared-huffstutler/">
-        Jared Huffstutler
-      </a>
-      <br>
+    <div class="mx-3 my-auto">
+
+      <p class="text-secondary mb-0">Created by&nbsp;
+        <a target="_blank" href="http://www.jaredhuffstutler.com">
+          Jared Huffstutler
+        </a>
+      </p>
       <small>
         <a class="text-muted" href="mailto:jaredhuffstutler@email.arizona.edu">jaredhuffstutler@email.arizona.edu</a>
       </small>
-    </p>
+    </div>
+
+    <div class="mx-3 my-auto d-flex flex-column">
+      <div>
+        <a class="d-inline-block mx-3 social-link" target="_blank" href="http://www.jaredhuffstutler.com">
+          <i class="fas fa-globe fa-fw fa-2x"></i>
+          <small class="d-block">portfolio</small>
+        </a>
+
+        <a class="d-inline-block mx-3 social-link" target="_blank" href="http://www.jaredhuffstutler.com/resume.html">
+          <i class="fas fa-file fa-fw fa-2x"></i>
+          <small class="d-block">resume</small>
+        </a>
+      </div>
+      <div>
+        <a class="d-inline-block mx-3 social-link" target="_blank" href="https://www.linkedin.com/in/jared-huffstutler/">
+          <i class="fab fa-linkedin fa-fw fa-2x"></i>
+          <small class="d-block">linked in</small>
+        </a>
+
+        <a class="d-inline-block mx-3 social-link" target="_blank" href="https://github.com/Obsessive-Coder">
+          <i class="fab fa-github-square fa-fw fa-2x"></i>
+          <small class="d-block">github</small>
+        </a>
+      </div>
+    </div>
   </footer>
 </body>
 

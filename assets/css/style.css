@@ -5,8 +5,18 @@ body {
   color: #1A2628;
 }
 
+footer {
+  background-color: rgba(26, 22, 22, 0.5);
+  box-shadow: 0 -1px 5px 0 rgba(116, 86, 86, 0.75);
+}
+
 .oleo-font {
   font-family: 'Oleo Script', cursive;
+}
+
+.social-link:hover {
+  text-decoration: none;
+  opacity: 0.5;
 }
 
 .card {
